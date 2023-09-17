@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+.error .selectize-input {
+    border-color: red;
+}
+
+label.error {
+    font-size: 10px;
+    color: red;
+}
+
+.custom-option {
+    padding: 2px 5px 5px 5px;
+}
+.table>tbody>tr:hover>td, .table>tbody>tr.active:hover>td {
+    background-color: #eaeaea;
+}
+
+.label-yellow {
+    background-color: #f2d600;
+}
+.label-purple {
+    background-color: #89609e;
+}
+.label-pink {
+    background-color: #c9558f;
+}
+.static-filter-top .hidden-lg {
+    clear: both;
+}
