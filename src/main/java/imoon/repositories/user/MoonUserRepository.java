@@ -1,4 +1,4 @@
-package imoon.repositories;
+package imoon.repositories.user;
 
 import imoon.models.user.MoonUser;
 import org.springframework.data.repository.CrudRepository;

@@ -1,7 +1,7 @@
 package imoon.services;
 
 import imoon.models.user.MoonUser;
-import imoon.repositories.MoonUserRepository;
+import imoon.repositories.user.MoonUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

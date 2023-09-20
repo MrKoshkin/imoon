@@ -3,7 +3,7 @@ package imoon.services;
 import imoon.models.user.MoonUser;
 import imoon.models.user.UserGroup;
 import imoon.models.user.UserRole;
-import imoon.repositories.MoonUserRepository;
+import imoon.repositories.user.MoonUserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
