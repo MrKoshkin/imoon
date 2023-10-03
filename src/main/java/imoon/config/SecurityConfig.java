@@ -1,6 +1,6 @@
 package imoon.config;
 
-import imoon.services.MoonUserDetailsService;
+import imoon.services.user.MoonUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

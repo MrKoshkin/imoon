@@ -1,4 +1,4 @@
-package imoon.services;
+package imoon.services.user;
 
 import imoon.models.user.MoonUser;
 import imoon.repositories.user.MoonUserRepository;

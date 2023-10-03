@@ -1,4 +1,4 @@
-package imoon.services;
+package imoon.services.user;
 
 import imoon.models.user.MoonUser;
 import imoon.models.user.UserGroup;
