@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Наименование страницы</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="/public/css/admin.css">
+    <script src="/public/js/jquery.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <script src="/public/js/jquery.bootpag.min.js"></script>
+    <script src="/public/js/jquery-confirm.min.js"></script>
+    <script src="/public/js/jquery.validate.min.js"></script>
+    <script src="/public/js/common.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/panel/index" class="navbar-brand logo" title="Панель управления">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li th:class="${#request.requestURI.startsWith('/panel/PlaceController') ? 'active' : ''}">
+                        <a href="/panel/PlaceController/index">
+                            <i class="fa-solid fa-map"></i> Места
+                        </a>
+                    </li>
+                    <li class="dropdown" th:class="${#request.requestURI.startsWith('/user/UserController') || #request.requestURI.startsWith('/panel/TagController') ? 'active' : ''}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-cog"></i> Настройки <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- Добавьте аналогичные блоки для других контроллеров -->
+                            <li th:if="${#authorization.expression('hasRole(''PANEL_SEE_USER_CONTROLLER'')')}">
+                                <a th:class="${#request.requestURI.startsWith('/user/UserController/index') ? 'active' : ''}" href="/user/UserController/index"><i class="glyphicon glyphicon-user"></i> Пользователи админки</a>
+                            </li>
+                            <li th:if="${#authorization.expression('hasRole(''PANEL_SEE_TAG_CONTROLLER'')')}">
+                                <a th:class="${#request.requestURI.startsWith('/panel/TagController/index') ? 'active' : ''}" href="/panel/TagController/index"><i class="fa fa-tag"></i> Теги</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/logout"><span class="glyphicon glyphicon-off"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="padding: 70px 0 0 0; min-height: calc(100vh - 80px);">
+        <!-- Обработка информации о состоянии (flash.info и flash.error) -->
+        <div th:if="${flash.info}" class="alert alert-success fade in notice-msg" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button>
+            <small><b th:text="${#dates.format(#dates.createNow(), 'HH:mm, ssсек.')}" /><span th:utext="${flash.info}" />
+        </div>
+        <script th:if="${flash.info}">
+            setTimeout(function () {
+                $(".alert .close").click();
+            }, 1500);
+        </script>
+        <div th:if="${flash.error}" class="alert alert-danger fade in notice-msg" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button>
+            <small><b th:text="${#dates.format(#dates.createNow(), 'HH:mm, ssсек.')}" /><span th:utext="${flash.error}" />
+        </div>
+        <script th:if="${flash.error}">
+            setTimeout(function () {
+                $(".alert .close").click();
+            }, 1500);
+        </script>
+        <!-- Основное содержание страницы (расположено в других файлах) -->
+        <div th:replace="fragments/content :: content" />
+    </div>
+</div>
+<footer style="height: 60px; margin-top: 20px; background-color: #ccc;">
+    <div class="container-fluid">
+        <small style="margin-top: 10px; display: inline-block; color: #c5c5c5;">Псс, парень, БЕГИИИИИИ!!!!!1</small>
+    </div>
+</footer>
+
+<div class="modal fade" id="mainModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+<div class="global-loader hidden">
+    <div><img src="/public/img/line-loader.gif"></div>
+</div>
+
+<style>
+    .global-loader {
+        position: fixed;
+        z-index: 30000;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        text-align: center;
+    }
+
+    .global-loader > div {
+        position: relative;
+        display: inline-block;
+        border-radius: 5px;
+        top: 50vh;
+        transform: translateY(-50%);
+        background-color: #fffefe;
+        padding: 10px;
+    }
+</style>
+
+<script>
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
+    $('#mainModal').on('shown.bs.modal', function () {
+        $('#mainModal').focus()
+    });
+    $("button[type=submit], input[type=submit], .pre-loader").bind("click", function () {
+        $(".global-loader").removeClass("hidden");
+    });
+</script>
+</body>
+</html>
