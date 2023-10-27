@@ -1,4 +1,4 @@
-package imoon.controllers.panel;
+package imoon.controllers.views.panel;
 
 import imoon.models.place.MoonPlace;
 import imoon.services.place.MoonPlaceService;

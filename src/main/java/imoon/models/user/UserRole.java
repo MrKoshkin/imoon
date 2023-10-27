@@ -6,8 +6,6 @@ import jakarta.persistence.*;
 @Entity
 public class UserRole {
 
-    public static final String ADMIN = "ADMIN";
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

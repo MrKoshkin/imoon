@@ -151,7 +151,7 @@ public class MoonUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MoonUser moonUser = (MoonUser) o;
-        return Objects.equals(username, moonUser.username) && Objects.equals(password, moonUser.password) && Objects.equals(email, moonUser.email) && Objects.equals(telegramCode, moonUser.telegramCode);
+        return Objects.equals(username, moonUser.username) && Objects.equals(password, moonUser.password) && Objects.equals(email, moonUser.email);
     }
 
     @Override

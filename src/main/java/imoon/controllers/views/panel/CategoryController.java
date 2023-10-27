@@ -1,4 +1,4 @@
-package imoon.controllers.panel;
+package imoon.controllers.views.panel;
 
 import imoon.models.place.PlaceCategory;
 import imoon.services.place.CategoryService;

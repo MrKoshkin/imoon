@@ -24,7 +24,7 @@ import java.util.Date;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final MoonUserDetailsService userDetailsService;
-    private final Key secretKey; // Здесь должен быть ваш секретный ключ
+    private final Key secretKey; // Здесь должен быть секретный ключ
 
     public JwtAuthenticationFilter(MoonUserDetailsService userDetailsService, Key secretKey) {
         this.userDetailsService = userDetailsService;

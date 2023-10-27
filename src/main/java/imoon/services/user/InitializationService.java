@@ -1,8 +1,8 @@
 package imoon.services.user;
 
 import imoon.models.user.MoonUser;
+import imoon.models.user.Role;
 import imoon.models.user.UserGroup;
-import imoon.models.user.UserRole;
 import imoon.repositories.user.MoonUserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +32,14 @@ public class InitializationService {
         initializeAdminUser(adminUsername, adminPassword);
     }
 
+    // Инициализация админа
     private void initializeAdminUser(String username, String password) {
         if (!moonUserRepository.existsByUsername(username)) {
             MoonUser adminUser = new MoonUser();
             adminUser.setUsername(username);
             String encodedPassword = passwordEncoder.encode(password);
             adminUser.setPassword(encodedPassword);
-            adminUser.setRole(UserRole.ADMIN);
+            adminUser.setRole(Role.ADMIN);
             adminUser.setHidden(false);
             adminUser.setTimestamp(System.currentTimeMillis());
             adminUser.getUserGroups().addAll(Arrays.asList(UserGroup.COMMON_CAN_AUTH, UserGroup.PANEL_SEE_USER_CONTROLLER));
