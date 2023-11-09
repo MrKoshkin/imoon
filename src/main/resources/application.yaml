@@ -23,7 +23,7 @@ spring:
 #      ddl-auto: update
 
 jwt:
-  secret: 98f2bsj24va8fl2f0afq8df8fa8zqf58ps76
+  secret: 98f2bsj2m4va8fl2f0afq8df8fao8zbf58da76
   lifetime: 60m
 
 admin:

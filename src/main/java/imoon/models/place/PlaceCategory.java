@@ -1,6 +1,7 @@
 package imoon.models.place;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Data
 public class PlaceCategory {
 
     @Id
@@ -35,46 +37,6 @@ public class PlaceCategory {
 
     @CreationTimestamp
     private Long timestamp;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public PlaceCategory getParent() {
-        return parent;
-    }
-
-    public void setParent(PlaceCategory parent) {
-        this.parent = parent;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public List<PlaceCategory> getCategories() {
         if (categories == null) {

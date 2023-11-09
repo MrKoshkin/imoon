@@ -1,11 +1,13 @@
 package imoon.models.common;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 public class Tag {
 
     public enum Type {
@@ -53,14 +55,6 @@ public class Tag {
     @Enumerated(EnumType.STRING)
     private Type type = Type.ONLY_TEXT;
 
-    public Tag getParent() {
-        return parent;
-    }
-
-    public void setParent(Tag parent) {
-        this.parent = parent;
-    }
-
     public List<Tag> getTags() {
         if (tags == null) {
             tags = new ArrayList<>();
@@ -68,71 +62,8 @@ public class Tag {
         return tags;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getIconColor() {
-        return iconColor;
-    }
-
-    public void setIconColor(String iconColor) {
-        this.iconColor = iconColor;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 }

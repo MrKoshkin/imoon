@@ -1,11 +1,13 @@
 package imoon.models.user;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Data
 public class Role {
 
     public static final String ADMIN = "ADMIN";
@@ -27,28 +29,12 @@ public class Role {
     @OneToMany(mappedBy = "role")
     private Set<UserRole> userRoles = new HashSet<>();
 
-    public Set<UserGroup> getUserGroups() {
-        return userGroups;
-    }
-
     public void addUserGroup(UserGroup userGroup) {
         userGroups.add(userGroup);
     }
 
     public void removeUserGroup(UserGroup userGroup) {
         userGroups.remove(userGroup);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<UserRole> getUserRoles() {
-        return userRoles;
     }
 
     public void addUserRole(UserRole userRole) {

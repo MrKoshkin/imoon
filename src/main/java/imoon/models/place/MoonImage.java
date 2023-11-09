@@ -1,9 +1,11 @@
 package imoon.models.place;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 
 @Entity
+@Data
 public class MoonImage {
 
     @Id
@@ -34,75 +36,4 @@ public class MoonImage {
     @Column(columnDefinition = "VARCHAR(255) default ''")
     private String metaDescription;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getOriginalPath() {
-        return originalPath;
-    }
-
-    public void setOriginalPath(String originalPath) {
-        this.originalPath = originalPath;
-    }
-
-    public String getPreviewPath() {
-        return previewPath;
-    }
-
-    public void setPreviewPath(String previewPath) {
-        this.previewPath = previewPath;
-    }
-
-    public MoonPlace getPlace() {
-        return place;
-    }
-
-    public void setPlace(MoonPlace place) {
-        this.place = place;
-    }
-
-    public MoonEvent getEvent() {
-        return event;
-    }
-
-    public void setEvent(MoonEvent event) {
-        this.event = event;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMetaDescription() {
-        return metaDescription;
-    }
-
-    public void setMetaDescription(String metaDescription) {
-        this.metaDescription = metaDescription;
-    }
-
-    public Integer getSortOrder() {
-        return sortOrder;
-    }
-
-    public void setSortOrder(Integer sortOrder) {
-        this.sortOrder = sortOrder;
-    }
 }

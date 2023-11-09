@@ -2,8 +2,10 @@ package imoon.models.common;
 
 import imoon.models.place.MoonPlace;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class Contact {
 
     public enum Type {
@@ -39,35 +41,4 @@ public class Contact {
     @Column(columnDefinition = "VARCHAR(8)")
     private Type type = Type.PHONE;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public MoonPlace getPlace() {
-        return place;
-    }
-
-    public void setPlace(MoonPlace place) {
-        this.place = place;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
 }

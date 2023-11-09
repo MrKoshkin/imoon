@@ -1,6 +1,7 @@
 package imoon.models.place;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 public class MoonEvent {
 
     @Id
@@ -52,78 +54,6 @@ public class MoonEvent {
     @CreationTimestamp
     private Long timestamp;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getCover() {
-        return cover;
-    }
-
-    public void setCover(String cover) {
-        this.cover = cover;
-    }
-
     public List<MoonImage> getImages() {
         if (images == null) {
             images = new ArrayList<>();
@@ -131,32 +61,5 @@ public class MoonEvent {
         return images;
     }
 
-    public void setImages(List<MoonImage> images) {
-        this.images = images;
-    }
-
-    public Long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public MoonPlace getPlace() {
-        return place;
-    }
-
-    public void setPlace(MoonPlace place) {
-        this.place = place;
-    }
-
-    public List<MoonTag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<MoonTag> tags) {
-        this.tags = tags;
-    }
 }
 

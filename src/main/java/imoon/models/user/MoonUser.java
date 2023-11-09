@@ -38,54 +38,6 @@ public class MoonUser {
 
     private Long timestamp;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getTelegramCode() {
-        return telegramCode;
-    }
-
-    public void setTelegramCode(String telegramCode) {
-        this.telegramCode = telegramCode;
-    }
-
-    public Boolean getHidden() {
-        return hidden;
-    }
-
-    public void setHidden(Boolean hidden) {
-        this.hidden = hidden;
-    }
-
-    public Long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public void setUserGroups(Set<UserGroup> userGroups) {
         this.userGroups = Optional.ofNullable(userGroups).orElse(new HashSet<>());
     }
@@ -136,14 +88,6 @@ public class MoonUser {
 
     public Set<Role> getRoles() {
         return userRoles.stream().map(UserRole::getRole).collect(Collectors.toSet());
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     @Override

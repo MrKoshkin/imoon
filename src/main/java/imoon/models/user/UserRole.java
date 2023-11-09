@@ -2,8 +2,10 @@ package imoon.models.user;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class UserRole {
 
     @Id
@@ -17,22 +19,6 @@ public class UserRole {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
-
-    public MoonUser getUser() {
-        return user;
-    }
-
-    public void setUser(MoonUser user) {
-        this.user = user;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 
     @PreRemove
     public void preRemove() {

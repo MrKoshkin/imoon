@@ -2,6 +2,7 @@ package imoon.models.place;
 
 import imoon.models.common.Contact;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Data
 public class MoonPlace {
 
     @Id
@@ -82,70 +84,6 @@ public class MoonPlace {
     @CreationTimestamp
     private Long timestamp;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Double getLat() {
-        return lat;
-    }
-
-    public void setLat(Double lat) {
-        this.lat = lat;
-    }
-
-    public Double getLng() {
-        return lng;
-    }
-
-    public void setLng(Double lng) {
-        this.lng = lng;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public List<Contact> getContacts() {
         if (contacts == null) {
             contacts = new ArrayList<>();
@@ -196,22 +134,6 @@ public class MoonPlace {
         return null;
     }
 
-    public void setSchedule(List<Schedule> schedule) {
-        this.schedule = schedule;
-    }
-
-    public void setSpecialSchedule(List<SpecialSchedule> specialSchedule) {
-        this.specialSchedule = specialSchedule;
-    }
-
-    public List<MoonEvent> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<MoonEvent> events) {
-        this.events = events;
-    }
-
     public String getNameOfDayOfWeek(int dayOfWeek) {
         if (schedule!=null) {
             switch (dayOfWeek) {
@@ -236,76 +158,4 @@ public class MoonPlace {
         return null;
     }
 
-
-    public String getCover() {
-        return cover;
-    }
-
-    public void setCover(String cover) {
-        this.cover = cover;
-    }
-
-    public void setImages(List<MoonImage> images) {
-        this.images = images;
-    }
-
-    public void setTags(List<MoonTag> tags) {
-        this.tags = tags;
-    }
-
-    public Integer getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(Integer followers) {
-        this.followers = followers;
-    }
-
-    public PlaceCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(PlaceCategory category) {
-        this.category = category;
-    }
-
-    public Boolean getMorning() {
-        return morning;
-    }
-
-    public void setMorning(Boolean morning) {
-        this.morning = morning;
-    }
-
-    public Boolean getDay() {
-        return day;
-    }
-
-    public void setDay(Boolean day) {
-        this.day = day;
-    }
-
-    public Boolean getEvening() {
-        return evening;
-    }
-
-    public void setEvening(Boolean evening) {
-        this.evening = evening;
-    }
-
-    public Boolean getNight() {
-        return night;
-    }
-
-    public void setNight(Boolean night) {
-        this.night = night;
-    }
-
-    public Long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
-    }
 }
