@@ -1,11 +1,13 @@
-package imoon.models.user;
+package imoon.entities.user;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
+@Data
 public class MoonUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

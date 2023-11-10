@@ -1,8 +1,8 @@
 package imoon.services.user;
 
-import imoon.models.user.MoonUser;
-import imoon.models.user.Role;
-import imoon.models.user.UserGroup;
+import imoon.entities.user.MoonUser;
+import imoon.entities.user.Role;
+import imoon.entities.user.UserGroup;
 import imoon.repositories.user.MoonUserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;

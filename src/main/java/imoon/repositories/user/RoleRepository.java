@@ -1,6 +1,6 @@
 package imoon.repositories.user;
 
-import imoon.models.user.Role;
+import imoon.entities.user.Role;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

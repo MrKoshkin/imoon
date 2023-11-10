@@ -1,4 +1,4 @@
-package imoon.models.user;
+package imoon.entities.user;
 
 import jakarta.persistence.*;
 import lombok.Data;

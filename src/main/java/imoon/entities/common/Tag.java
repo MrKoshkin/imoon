@@ -1,4 +1,4 @@
-package imoon.models.common;
+package imoon.entities.common;
 
 import jakarta.persistence.*;
 import lombok.Data;

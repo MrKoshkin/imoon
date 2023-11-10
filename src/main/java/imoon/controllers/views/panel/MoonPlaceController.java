@@ -1,6 +1,6 @@
 package imoon.controllers.views.panel;
 
-import imoon.models.place.MoonPlace;
+import imoon.entities.place.MoonPlace;
 import imoon.services.place.MoonPlaceService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

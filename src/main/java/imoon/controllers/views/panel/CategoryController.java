@@ -1,6 +1,6 @@
 package imoon.controllers.views.panel;
 
-import imoon.models.place.PlaceCategory;
+import imoon.entities.place.PlaceCategory;
 import imoon.services.place.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

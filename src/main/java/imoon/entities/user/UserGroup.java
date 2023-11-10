@@ -1,4 +1,4 @@
-package imoon.models.user;
+package imoon.entities.user;
 
 public enum UserGroup {
     COMMON_CAN_AUTH("Пользователь может авторизоваться в системе"),

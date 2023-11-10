@@ -1,6 +1,6 @@
-package imoon.models.place;
+package imoon.entities.place;
 
-import imoon.models.common.Contact;
+import imoon.entities.common.Contact;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;

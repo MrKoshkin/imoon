@@ -1,6 +1,6 @@
-package imoon.models.common;
+package imoon.entities.common;
 
-import imoon.models.place.MoonPlace;
+import imoon.entities.place.MoonPlace;
 import jakarta.persistence.*;
 import lombok.Data;
 

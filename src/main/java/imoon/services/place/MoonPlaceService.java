@@ -1,6 +1,6 @@
 package imoon.services.place;
 
-import imoon.models.place.MoonPlace;
+import imoon.entities.place.MoonPlace;
 import imoon.repositories.place.MoonPlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

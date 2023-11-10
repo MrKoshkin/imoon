@@ -1,14 +1,13 @@
-package imoon.models.place;
+package imoon.entities.place;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
 @Data
-public class SpecialSchedule {
+public class Schedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +16,8 @@ public class SpecialSchedule {
     @ManyToOne
     private MoonPlace place;
 
-    @Column(columnDefinition = "Date")
-    private LocalDate date;
+    @Column(columnDefinition = "SMALLINT", nullable = false)
+    private short dayOfWeek;
 
     @Column(columnDefinition = "TIME default '00:00'")
     private LocalTime openTime;

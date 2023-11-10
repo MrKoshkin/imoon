@@ -1,6 +1,6 @@
 package imoon.services.place;
 
-import imoon.models.place.PlaceCategory;
+import imoon.entities.place.PlaceCategory;
 import imoon.repositories.place.CategoryRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
