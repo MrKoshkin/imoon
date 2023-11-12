@@ -1,24 +1,17 @@
 package imoon.config;
 
 import imoon.services.user.MoonUserDetailsService;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import java.security.Key;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -28,13 +21,13 @@ public class SecurityConfig {
 
     @Autowired
     private MoonUserDetailsService userDetailsService;
-    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256); // Здесь должен быть ваш секретный ключ
+//    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256); // Здесь должен быть ваш секретный ключ
 
     // Настройка аутентификации. Указываем, как Spring Security будет проверять учетные записи пользователей
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth, DaoAuthenticationProvider daoAuthenticationProvider) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider);
-    }
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth, DaoAuthenticationProvider daoAuthenticationProvider) throws Exception {
+//        auth.authenticationProvider(daoAuthenticationProvider);
+//    }
 
 
     @Bean
@@ -45,10 +38,10 @@ public class SecurityConfig {
         return daoAuthenticationProvider;
     }
 
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-//        return authenticationConfiguration.getAuthenticationManager();
-//    }
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
     // Bean для кодирования паролей пользователей
     @Bean
@@ -61,12 +54,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf((csrf) -> csrf.ignoringRequestMatchers("/api/*"))     // Отключаем CSRF защиту для api
+                .cors(withDefaults())
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 // Задаем правила доступа к URL. Например, корневой URL должен быть доступен только для пользователей с ролью ADMIN.
                                 .requestMatchers("/test").hasRole("ADMIN")
                                 // Для всех остальных запросов пользователь должен быть аутентифицирован (залогинен).
-                                .anyRequest().authenticated()
+//                                .anyRequest().authenticated()
+                                .requestMatchers("/auth").permitAll()
+                                .anyRequest().permitAll()
+//                                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)   // Отключение сессий
                 )
                 .formLogin(withDefaults()) // Использует настройки по умолчанию для формы входа
                 .logout(logout -> logout.logoutUrl("/logout").permitAll()); // Указываем URL для выхода и разрешаем всем пользователям использовать его
