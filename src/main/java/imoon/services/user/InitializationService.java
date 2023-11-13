@@ -1,9 +1,9 @@
 package imoon.services.user;
 
-import imoon.entities.user.MoonUser;
+import imoon.entities.user.User;
 import imoon.entities.user.Role;
 import imoon.entities.user.UserGroup;
-import imoon.repositories.user.MoonUserRepository;
+import imoon.repositories.user.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ public class InitializationService {
     private String adminPassword;
 
     @Autowired
-    private MoonUserRepository moonUserRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -34,8 +34,8 @@ public class InitializationService {
 
     // Инициализация админа
     private void initializeAdminUser(String username, String password) {
-        if (!moonUserRepository.existsByUsername(username)) {
-            MoonUser adminUser = new MoonUser();
+        if (!userRepository.existsByUsername(username)) {
+            User adminUser = new User();
             adminUser.setUsername(username);
             String encodedPassword = passwordEncoder.encode(password);
             adminUser.setPassword(encodedPassword);
@@ -44,7 +44,7 @@ public class InitializationService {
             adminUser.setTimestamp(System.currentTimeMillis());
             adminUser.getUserGroups().addAll(Arrays.asList(UserGroup.COMMON_CAN_AUTH, UserGroup.PANEL_SEE_USER_CONTROLLER));
 
-            moonUserRepository.save(adminUser);
+            userRepository.save(adminUser);
         }
     }
 }

@@ -1,6 +1,6 @@
 package imoon.config;
 
-import imoon.services.user.MoonUserDetailsService;
+import imoon.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     @Autowired
-    private MoonUserDetailsService userDetailsService;
+    private UserService userService;
 //    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256); // Здесь должен быть ваш секретный ключ
 
     // Настройка аутентификации. Указываем, как Spring Security будет проверять учетные записи пользователей
@@ -34,7 +34,7 @@ public class SecurityConfig {
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        daoAuthenticationProvider.setUserDetailsService(userService);
         return daoAuthenticationProvider;
     }
 
@@ -61,7 +61,7 @@ public class SecurityConfig {
                                 .requestMatchers("/test").hasRole("ADMIN")
                                 // Для всех остальных запросов пользователь должен быть аутентифицирован (залогинен).
 //                                .anyRequest().authenticated()
-                                .requestMatchers("/auth").permitAll()
+//                                .requestMatchers("/auth").permitAll()
                                 .anyRequest().permitAll()
 //                                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)   // Отключение сессий
                 )

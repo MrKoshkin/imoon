@@ -2,8 +2,10 @@ package imoon.controllers.api.v1;
 
 import imoon.dtos.JwtRequest;
 import imoon.dtos.JwtResponse;
+import imoon.dtos.RegistrationUserDto;
 import imoon.exceptions.AppError;
-import imoon.services.user.MoonUserDetailsService;
+import imoon.services.user.AuthService;
+import imoon.services.user.UserService;
 import imoon.utils.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,20 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
-    private final MoonUserDetailsService userDetailsService;
-    private final JwtTokenUtils jwtTokenUtils;
-    private final AuthenticationManager authenticationManager;
+    private final AuthService authService;
 
     @PostMapping("/auth")
     public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authRequest) {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-        } catch (BadCredentialsException e) {
-            return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Неправильный логин или пароль"), HttpStatus.UNAUTHORIZED);
-        }
+        return authService.createAuthToken(authRequest);
+    }
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
-        String token = jwtTokenUtils.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token));
+    @PostMapping("/registration")
+    public ResponseEntity<?> createNewUser(@RequestBody RegistrationUserDto registrationUserDto) {
+        return authService.createNewUser(registrationUserDto);
     }
 }

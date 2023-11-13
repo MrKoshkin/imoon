@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Data
-public class MoonUser {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -96,12 +96,12 @@ public class MoonUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MoonUser moonUser = (MoonUser) o;
-        return Objects.equals(username, moonUser.username) && Objects.equals(password, moonUser.password) && Objects.equals(email, moonUser.email);
+        User user = (User) o;
+        return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, email, telegramCode);
+        return Objects.hash(username, password, email);
     }
 }
