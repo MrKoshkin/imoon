@@ -1,6 +1,7 @@
 package imoon.services.user;
 
 import imoon.dtos.RegistrationUserDto;
+import imoon.entities.user.Role;
 import imoon.entities.user.User;
 import imoon.entities.user.UserRole;
 import imoon.repositories.user.UserRepository;
@@ -23,6 +24,13 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     private RoleService roleService;
     private PasswordEncoder passwordEncoder;
+
+//    @Autowired
+//    public UserService(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder) {
+//        this.userRepository = userRepository;
+//        this.roleService = roleService;
+//        this.passwordEncoder = passwordEncoder;
+//    }
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -62,12 +70,7 @@ public class UserService implements UserDetailsService {
         user.setUsername(registrationUserDto.getUsername());
         user.setEmail(registrationUserDto.getEmail());
         user.setPassword(passwordEncoder.encode(registrationUserDto.getPassword()));
-
-        UserRole userRole = new UserRole();
-        userRole.setUser(user);
-        userRole.setRole(roleService.getUserRole());
-        user.setUserRoles(Set.of(userRole));
-
+        user.addRole(roleService.getUserRole());
         return userRepository.save(user);
     }
 

@@ -3,6 +3,10 @@ server:
   port: 9999
 
 spring:
+#  main:
+#    # Отключение циклических зависимостей (крайне не рекомендуется)
+#    allow-circular-references: true
+
   # PostgreSQL configuration
   datasource:
     url: jdbc:postgresql://localhost:5432/imoon
