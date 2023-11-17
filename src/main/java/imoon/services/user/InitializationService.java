@@ -13,21 +13,24 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-public class InitializationService {
+public class InitializationService implements AdminInitializer {
 
     @Value("${admin.username}")
     private String adminUsername;
-
     @Value("${admin.password}")
     private String adminPassword;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    public InitializationService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    @PostConstruct
+//    @PostConstruct
+    @Override
     public void initializeAdminUsers() {
         initializeAdminUser(adminUsername, adminPassword);
     }

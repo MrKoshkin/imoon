@@ -1,9 +1,11 @@
 package imoon.config;
 
+import imoon.services.user.AdminInitializer;
 import imoon.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -38,19 +40,10 @@ public class SecurityConfig {
 //        auth.authenticationProvider(daoAuthenticationProvider);
 //    }
 
-//    @Autowired
-//    public SecurityConfig(UserService userService, JwtRequestFilter jwtRequestFilter) {
-//        this.userService = userService;
-//        this.jwtRequestFilter = jwtRequestFilter;
-//    }
-
+    @Lazy
     @Autowired
-    public void setUserService(UserService userService) {
+    public SecurityConfig(UserService userService, JwtRequestFilter jwtRequestFilter) {
         this.userService = userService;
-    }
-
-    @Autowired
-    public void setJwtRequestFilter(JwtRequestFilter jwtRequestFilter) {
         this.jwtRequestFilter = jwtRequestFilter;
     }
 

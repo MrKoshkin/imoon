@@ -21,31 +21,17 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
-    private UserRepository userRepository;
-    private RoleService roleService;
-    private PasswordEncoder passwordEncoder;
-
-//    @Autowired
-//    public UserService(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder) {
-//        this.userRepository = userRepository;
-//        this.roleService = roleService;
-//        this.passwordEncoder = passwordEncoder;
-//    }
+    private final UserRepository userRepository;
+    private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-    }
-
-    @Autowired
-    public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
-    }
-
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
+
 
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
